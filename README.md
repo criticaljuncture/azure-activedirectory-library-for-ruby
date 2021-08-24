@@ -9,13 +9,14 @@ The ADAL for Ruby library makes it easy for Ruby applications to authenticate to
 You can install the ADAL gem with Rubygems.
 
 ```
-gem install adal
+gem install adal, git: 'https://github.com/richwallett/azure-activedirectory-library-for-ruby'
 ```
 
 Alternatively, you can build the gem from scratch.
 
 ```
 git clone git@github.com:AzureAD/azure-activedirectory-for-ruby.git
+git clone git@github.com:richwallett/azure-activedirectory-library-for-ruby.git
 cd azure-activedirectory-for-ruby
 gem build adal.gemspec
 gem install adal
@@ -31,7 +32,7 @@ The tests in this repo use the RSpec framework for behavior-driven testing. RSpe
 
 Checkout the repo
 
-`git clone git@github.com:AzureAD/azure-activedirectory-library-for-ruby`
+`git@github.com:richwallett/azure-activedirectory-library-for-ruby.git`
 
 Install the dependencies
 
@@ -47,7 +48,7 @@ This gem abides by the [Rubocop](https://github.com/bbatsov/rubocop) defaults. R
 
 Checkout the repo
 
-`git clone git@github.com:AzureAD/azure-activedirectory-library-for-ruby`
+`git clone git@github.com:richwallett/azure-activedirectory-library-for-ruby.git`
 
 Install the dependencies
 
