@@ -20,6 +20,7 @@
 # THE SOFTWARE.
 #-------------------------------------------------------------------------------
 
+require_relative './jwt_parameters'
 require_relative './logging'
 
 require 'digest'
@@ -30,6 +31,7 @@ require 'securerandom'
 module ADAL
   # The return type of all of the instance methods that return tokens.
   class TokenResponse
+    include JwtParameters
     extend Logging
 
     ##
@@ -117,7 +119,7 @@ module ADAL
         return
       end
       logger.verbose('Attempting to decode id token in token response.')
-      claims = JWT.decode(id_token.to_s, nil, false).first
+      claims = JWT.decode(id_token.to_s, nil, false, algorithm: RS256).first
       @id_token = id_token
       @user_info = ADAL::UserInformation.new(claims)
     end

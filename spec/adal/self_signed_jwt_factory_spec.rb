@@ -39,24 +39,24 @@ describe ADAL::SelfSignedJwtFactory do
 
     it 'should be decodable with the public key' do
       expect do
-        JWT.decode(@jwt, @cert.public_key)
+        JWT.decode(@jwt, @cert.public_key, nil, algorithm: 'RS256')
       end.to_not raise_error
     end
 
     it 'should contain the correct keys in the payload' do
-      payload, = JWT.decode(@jwt, @cert.public_key)
+      payload, = JWT.decode(@jwt, @cert.public_key, nil, algorithm: 'RS256')
       expect(payload.keys).to contain_exactly(
         'aud', 'iss', 'sub', 'nbf', 'exp', 'jti')
     end
 
     it 'should containt the correct keys in the header' do
-      _, header = JWT.decode(@jwt, @cert.public_key)
+      _, header = JWT.decode(@jwt, @cert.public_key, nil, algorithm: 'RS256')
       expect(header.keys).to contain_exactly('x5t', 'alg', 'typ')
     end
 
     it 'should contain the correct thumbprint from the certificate' do
       thumbprint = OpenSSL::Digest::SHA1.new(@cert.to_der).base64digest
-      _, header = JWT.decode(@jwt, @cert.public_key)
+      _, header = JWT.decode(@jwt, @cert.public_key, nil, algorithm: 'RS256')
       expect(header['x5t']).to eq(thumbprint)
     end
   end

@@ -106,7 +106,11 @@ describe ADAL::ClientAssertionCertificate do
       expect do
         JWT.decode(@assertion_cert.request_params[:client_assertion],
                    cert.public_key,
-                   options: { verify_not_before: false })
+                   false,
+                   {
+                     algorithm: 'RS256',
+                     verify_not_before: false
+                   })
       end.to_not raise_error
     end
   end
